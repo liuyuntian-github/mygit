@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hwmenu.dao.MenuDao">
+    <sql id="table_base_attribute_name">
+        menu_id,
+        food_name,
+        food_url,
+        state,
+        create_date,
+        update_date,
+        price,
+        food_type
+    </sql>
+    <sql id="class_attribute_name">
+        #{menuId},
+        #{foodName},
+        #{foodUrl},
+        #{state},
+        #{createDate},
+        #{updateDate},
+        #{price},
+        #{foodType}
+    </sql>
+    <sql id="table_name">
+      food_menu
+    </sql>
+    <sql id="table_query_attribute">
+        <if test="menuId != null and menuId != ''">
+            and menu_id=#{menuId}
+        </if>
+        <if test="foodName != null and foodName != ''">
+            and food_name like CONCAT(CONCAT('%',#{foodName}),'%')
+        </if>
+        <if test="foodUrl != null and foodUrl != ''">
+            and food_url=#{foodUrl}
+        </if>
+        <if test="state != null and state != '' ">
+            and state=#{state}
+        </if>
+        <if test="createDate != null and createDate != ''">
+            and create_date=#{createDate}
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            and update_date=#{updateDate}
+        </if>
+        <if test="price != null and price != ''">
+            and price=#{price}
+        </if>
+        <if test="foodType != null and foodType != ''">
+            and food_type=#{foodType}
+        </if>
+    </sql>
+
+    <sql id="table_update_attribute">
+        <if test="menuId  != null and menuId != ''">
+            menu_id=#{menuId},
+        </if>
+        <if test="foodName != null and foodName != ''">
+            food_name=#{foodName},
+        </if>
+        <if test="foodUrl != null and foodUrl != ''">
+           food_url=#{foodUrl},
+        </if>
+        <if test="state != null and state != '' ">
+            state=#{state},
+        </if>
+        <if test="createDate != null and createDate != ''">
+            create_date=#{createDate},
+        </if>
+        <if test="updateDate != null and updateDate != ''">
+            update_date=#{updateDate},
+        </if>
+        <if test="price != null and price != ''">
+            price=#{price},
+        </if>
+        <if test="foodType != null and foodType != ''">
+            food_type=#{foodType}
+        </if>
+    </sql>
+     <resultMap id="menuMap" type="com.example.hwmenu.entity.MenuEntity" >
+        <id column="MENU_ID" property="menuId" />
+        <result column="FOOD_NAME" property="foodName" jdbcType="VARCHAR" />
+        <result column="FOOD_URL" property="foodUrl" jdbcType="VARCHAR" />
+        <result column="STATE" property="state" jdbcType="VARCHAR" />
+        <result column="PRICE" property="price" jdbcType="DOUBLE" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+        <result column="FOOD_TYPE" property="foodType" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--查询菜单-->
+    <select id="selectByMenu" parameterType="com.example.hwmenu.entity.MenuEntity" resultMap="menuMap">
+        select <include refid="table_base_attribute_name"/> from <include refid="table_name"/>
+        <where>
+          <include refid="table_query_attribute"/>
+        </where>
+    </select>
+    <!--增加菜单食物-->
+    <insert id="saveMenu" parameterType="com.example.hwmenu.entity.MenuEntity" >
+        insert into <include refid="table_name"/> (<include refid="table_base_attribute_name"/>) values (<include refid="class_attribute_name"/>)
+    </insert>
+    <!--修改菜单食物-->
+    <update id="updateMenu" parameterType="com.example.hwmenu.entity.MenuEntity">
+        update <include refid="table_name"/>
+        <set>
+            <include refid="table_update_attribute"/>
+        </set>
+        <where>
+            menu_id=#{menuId}
+        </where>
+    </update>
+
+    <!--查询菜单-->
+    <select id="selectByMenuId" parameterType="com.example.hwmenu.entity.MenuEntity" resultMap="menuMap">
+        select <include refid="table_base_attribute_name"/> from <include refid="table_name"/>
+        <where>
+            menu_id=#{menuId}
+        </where>
+    </select>
+</mapper>

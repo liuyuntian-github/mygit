@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>妇女节H5管理系统</title>
+
+    <link href="../css/spin.css" rel="stylesheet"/>
+
+    <link href="../css/td.css" rel="stylesheet"/>
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../vendor/bootstrap/css/jquery.datetimepicker.css">
+
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ><!--class="beg-login-bg"-->
+<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+    <div id="innerdiv" style="position:absolute;">
+        <img id="bigimg" style="border:5px solid #fff;" src="" data-type=""/>
+        <!--<button type="button" id="analysis" style="display:none;z-index:3"  class="btn" >&emsp;分&ensp;析&emsp;</button>-->
+    </div>
+</div>
+
+<div id="wrapper" >
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand"  href="index.html">妇女节H5管理系统</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i>用户配置文件</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i>设置</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    <li>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i>数据查询<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="user.html">用户查询</a>
+                                <a href="video.html">视频查询</a>
+                                <a href="comment.html">评论查询</a>
+                               <!-- <a href="logstr.html">查询日志结构化详细信息</a>
+                                <a href="logun.html">查询日志非结构化详细信息</a>
+                                <a href="ocrresult.html">查询ocr原始信息</a>
+                                <a href="structinfosearch.html">查询任务结构化详细信息</a>
+                                <a href="unstructinfosearch.html">查询任务非结构化详细信息</a>
+                                <a href="finalresult.html">查询最终结果信息</a>-->
+                            </li>
+                        </ul>
+                   <!-- <a href="#"><i class="fa fa-files-o fa-fw"></i>数据图表统计<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="weekly.html">排行榜</a>
+                            <a href="weekly.html">评论</a>
+                            &lt;!&ndash;<a href="weeklytable.html">各系统调用OCR情况汇总</a>&ndash;&gt;
+                            &lt;!&ndash;<a href="eachtime.html">各时间段调用OCR情况图表</a>&ndash;&gt;
+                            &lt;!&ndash;<a href="eachtimetable.html">各时间段调用OCR情况汇总</a>&ndash;&gt;
+                            &lt;!&ndash;<a href="topsearch.html">调用图片最多查询</a>&ndash;&gt;
+                        </li>
+                    </ul>-->
+                        <!-- /.nav-second-level -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+    <!-- /.navbar-static-side -->
+
+    <!--<div id="page-wrapper"  style="background-image:url(../img/background.png);width: 1920px;height: 1080px">-->
+    <div id="page-wrapper" ><!--style="opacity:0.5"-->
+        <!--<div class="container-fluid" >-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header">查询</h4>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        请选择查询条件
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group" style="width:250px">
+                                    <label>视频标题</label>
+                                    <input name="title" id="title" class="form-control clear">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group" style="width:250px">
+                                    <label>视频编号</label>
+                                    <input name="categoryNumber" id="categoryNumber" class="form-control clear">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <p>
+                                        <button type="button" id="btSearch"  class="btn btn-success" onclick="getResult()">&emsp;查&ensp;询&emsp;</button>&emsp;&emsp;&emsp;&emsp;
+                                        <button type="reset" id="clears" class="btn btn-info ">&emsp;重&ensp;置&emsp;</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--加载-->
+        <div id="spin" class="center-in-center"> </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                    <!--<div>-->
+                        <div class="panel-heading" id="data">
+                            数据列表
+                        </div>
+                        <div class="panel-body">
+                        <!--<div>-->
+                            <div class="table-responsive">
+                                <button type="button" id="delAll"  class="btn btn-success" onclick="delAll()">&emsp;批量删除&emsp;</button>&emsp;&emsp;&emsp;&emsp;
+                                <table id="tab" class="table table-hover"></table>
+                                <!--<table  id="tab" width="100%" class="table table-bordered">-->
+                                    <thead>
+
+
+                                    </thead>
+
+                                    <tbody id="body">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+    </div>
+<!-- 引入bootstrap样式 -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<!-- 引入bootstrap-table样式 -->
+<link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet">
+
+<!-- jquery -->
+<script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-table.min.js -->
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+<!-- 引入中文语言包 -->
+<script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<!--<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>-->
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="../dist/js/sb-admin-2.js"></script>
+
+<script src="../vendor/bootstrap/js/jquery.datetimepicker.js"></script>
+
+<!-- DataTables JavaScript -->
+<!--<script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>-->
+
+<script type="text/javascript" src="../js/spinset.js" ></script>
+<script type="text/javascript" src="../js/spin.min.js" ></script>
+<script type="text/javascript" src="../js/page/comment.js" ></script>
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+    /*var sum=0;
+    $('#data').click(function () {
+        if(sum%2==0){
+            $('table').css("table-layout","auto");
+            sum++;
+            console.log("auto"+sum);
+        }else{
+            $('table').css("table-layout","fixed");
+            sum++;
+            console.log("fixed"+sum);
+        }
+
+    })
+    $("#tab").bootstrapTable({
+        url:"/page/getCommentInfoPage",  //请求地址
+        striped : true, //是否显示行间隔色
+        pageNumber : 1, //初始化加载第一页
+        pagination : true,//是否分页
+        sidePagination : 'server',//server:服务器端分页|client：前端分页
+        pageSize : 5,//单页记录数
+        pageList : [ 5, 10,20,40],//可选择单页记录数
+        showRefresh : true,//刷新按钮
+        sortable:true,
+        exportTypes:['excel'],  //导出文件类型，[ 'csv', 'txt', 'sql', 'doc', 'excel', 'xlsx', 'pdf']
+        showExport: true,
+        queryParams : function (params) {//上传服务器的参数
+            var temp = {//如果是在服务器端实现分页，limit、offset这两个参数是必须的
+                limit : params.limit, // 每页显示数量
+                offset : params.offset, // SQL语句起始索引*!/
+                page: (params.offset / params.limit) + 1,   //当前页码
+            };
+            return temp;
+        },
+        columns : [
+            {
+                checkbox: true,
+                visible: true                  //是否显示复选框
+            },
+        {
+            title: '序号',
+            field: '',
+            align: 'center',
+            sortable : true,
+            formatter: function (value, row, index) {
+                var pageSize = $('#tab').bootstrapTable('getOptions').pageSize;     //通过table的#id 得到每页多少条
+                var pageNumber = $('#tab').bootstrapTable('getOptions').pageNumber; //通过table的#id 得到当前第几页
+                return pageSize * (pageNumber - 1) + index + 1;    // 返回每条的序号： 每页条数 *（当前页 - 1 ）+ 序号
+            }
+        },
+            // {
+            //     title : '视频ID',
+            //     field : 'videoId',
+            //     sortable : true,
+            // },
+            {
+                title : '视频标题',
+                field : 'title',
+                //sortable : true,
+            },
+            {
+                title : '视频创建时间',
+                field : 'createDateVideo',
+                //sortable : true,
+            },
+            {
+               title:'视频编号',
+                field:'categoryNumber'
+            },
+
+            {
+                title : '姓名',
+                field : 'realName',
+               // sortable : true
+            },
+            {
+                title : '评论人微信名',
+                field : 'commentator',
+               // sortable : true
+            },
+            {
+                title : '评论',
+                field : 'comment',
+                width:'30%',
+                formatter:comment
+               // sortable : true
+            },
+            {
+                title : '评论人头像',
+                field : 'commentatorUrl',
+                formatter:openimg
+              //  sortable : true
+            },
+            {
+                title : '留言时间',
+                field : 'createDateComment',
+             //   sortable : true
+            }, {
+                field: 'commentId',
+                title: '删除',
+                formatter : operateFormatter
+            },
+        ],
+
+    })
+    //操作
+    function operateFormatter(value, row, index) {
+        //var e = '<a href="#" mce_href="#" onclick="edit(\''+ value + '\')">编辑</a> ';
+        //var c = '<a href="#" mce_href="#" onclick="detail(\''+ value + '\')">查看</a> ';
+        var d = '<a href="#" mce_href="#" onclick="del(\''+ value +'\')">删除</a> ';
+        return d;
+
+    }
+    //评论
+    function comment(value, row, index) {
+        //var e = '<a href="#" mce_href="#" onclick="edit(\''+ value + '\')">编辑</a> ';
+        //var c = '<a href="#" mce_href="#" onclick="detail(\''+ value + '\')">查看</a> ';
+        var d ="<div title='"+value+"'>'"+value+"'</div>";
+        return d;
+
+    }
+    //头像
+    function openimg(value, row, index) {
+        var img="";
+        if(value!=null) {
+            //var img = "<img src=" + value + " onclick=imgShow('#outerdiv','#innerdiv','#bigimg','" + value + "','')>";
+            var img="<div onclick=imgShow('#outerdiv','#innerdiv','#bigimg','" + value + "','')>"+value+"</div>"
+        }
+        return img;
+
+    }
+    function del(id) {
+        // $("#table").bootstrapTable('getSelections');为bootstrapTable自带的，所以说一定要使用bootstrapTable显示表格,#table：为table的id
+        var rows = $("#tab").bootstrapTable('getSelections');
+        console.log(rows);
+        if (rows.length == 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
+            alert("请先选择要删除的记录!");
+            return;
+        } else {
+            var arrays = new Array();// 声明一个数组
+            $(rows).each(function () {// 通过获得别选中的来进行遍历
+                arrays.push(this.commentId);// cid为获得到的整条数据中的一列
+            });
+            var idcard = arrays.join(','); // 获得要删除的id
+            console.log(idcard);
+            alert(idcard)
+        }
+    }
+    function imgShow(outerdiv, innerdiv, bigimg, _this,type){
+        var src = _this.replace("https","http");//获取当前点击的pimg元素中的src属性
+        //console.log(src);
+        $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+        $(bigimg).attr("data-type",type);
+        /!*获取当前点击图片的真实大小，并显示弹出层及大图*!/
+        $("<img/>").attr("src", src).on('load',function(){
+            var windowW = $(window).width();//获取当前窗口宽度
+            var windowH = $(window).height();//获取当前窗口高度
+            var realWidth = this.width;//获取图片真实宽度
+            var realHeight = this.height;//获取图片真实高度
+            var imgWidth, imgHeight;
+            var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
+
+            if(realHeight>windowH*scale) {//判断图片高度
+                imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放
+                imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度
+                if(imgWidth>windowW*scale) {//如宽度扔大于窗口宽度
+                    imgWidth = windowW*scale;//再对宽度进行缩放
+                }
+            } else if(realWidth>windowW*scale) {//如图片高度合适，判断图片宽度
+                imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放
+                imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度
+            } else {//如果图片真实高度和宽度都符合要求，高宽不变
+                imgWidth = realWidth;
+                imgHeight = realHeight;
+            }
+            $(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放
+
+            var w = (windowW-imgWidth)/2;//计算图片与窗口左边距
+            var h = (windowH-imgHeight)/2;//计算图片与窗口上边距
+            $(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性
+            $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+            $("#analysis").fadeIn("fast");
+            spinner.spin();
+        });
+        $(outerdiv).click(function(){//再次点击淡出消失弹出层
+            $(this).fadeOut("fast");
+        });
+    }*/
+</script>
+<script>
+
+</script>
+<script>
+
+</script>
+</body>
+
+</html>
+

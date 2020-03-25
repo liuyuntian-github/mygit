@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>菜单管理系统-登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/layui.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+</head>
+<body class="beg-login-bg">
+<div class="beg-login-box">
+    <header>
+        <h1>菜单管理系统</h1>
+    </header>
+    <div class="beg-login-main">
+        <form action="login.html" class="layui-form" method="post">
+            <div class="layui-form-item">
+                <label class="beg-login-icon">
+                    <i class="layui-icon">&#xe612;</i>
+                </label>
+                <input type="text" id="name" lay-verify="required" name="name" autocomplete="off" placeholder="这里输入账号" class="layui-input" lay-verType="tips">
+            </div>
+            <div class="layui-form-item">
+                <label class="beg-login-icon">
+                    <i class="layui-icon">&#xe642;</i>
+                </label>
+                <input type="password" id="password" lay-verify="required" name="password" autocomplete="off" placeholder="这里输入密码" class="layui-input" lay-verType="tips">
+            </div>
+            <div class="layui-form-item">
+                <label class="beg-login-icon">
+                    <i class="layui-icon">&#xe642;</i>
+                </label>
+                <img id="validateImg" src="" alt="点击刷新"  width="100px"/>
+                <input type="text" id="validate" lay-verify="required" name="password" autocomplete="off" placeholder="这里输入验证码" class="layui-input" lay-verType="tips">
+
+            </div>
+            <div class="layui-form-item">
+                <div class="beg-pull">
+                    <button type="button" id="login" class="layui-btn layui-btn-normal" style="width:100%;" lay-submit lay-filter="formDemo">
+                        登　　录
+                    </button>
+                </div>
+            </div>
+            <!--<div class="layui-form-item">-->
+                <!--<div class="beg-pull">-->
+                    <!--<button type="button" id="clear" class="layui-btn layui-btn-normal" style="width:100%;" lay-submit lay-filter="formDemo">-->
+                        <!--清　　空-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        </form>
+    </div>
+    <footer>
+        <p></p>
+    </footer>
+</div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<!--<script type="text/javascript" src="../vendor/layui/layui.js"></script>-->
+<!--<script type="text/javascript" src="../js/login.js"></script>-->
+
+<script>
+    window.onload = function () {
+        imgvalidate();
+    }
+
+    $("#login").click(function () {
+        // var name=$("#name").val();
+        // var password=$("#password").val();
+        // var validate=$("#validate").val();
+        login();
+        // if(name=="admin"&&password=="123456"){
+        //     window.location.href="/page/index.html";
+        // }else if(name==""){
+        //     alert("用户名不能为空");
+        // }else if(password==""){
+        //     alert("密码不能为空");
+        // }else {
+        //     alert("密码错误");
+        // }
+
+    })
+    $("#clear").click(function () {
+        $("#name").val("");
+        $("#password").val("");
+    })
+    $("#validateImg").click(function () {imgvalidate();
+
+    })
+    function imgvalidate() {
+        $.ajax({
+            type: "post",//数据发送的方式（post 或者 get）
+            url: "/user/getValidate",//要发送的后台地址
+            traditional: true,
+            async: true,
+            success: function (data) {//ajax请求成功后触发的方法
+                console.log(data);
+                var imgBase64=data.base64Str;
+                $("#validateImg").attr("src","data:image/png;base64,"+imgBase64);
+            }
+        })
+    }
+    function login() {
+        var name=$("#name").val();
+        var password=$("#password").val();
+        var validate=$("#validate").val();
+        var data="name="+name+"&password="+password+"&validate="+validate;
+        $.ajax({
+            type: "post",//数据发送的方式（post 或者 get）
+            url: "/user/login",//要发送的后台地址
+            traditional: true,
+            async: true,
+            data:data,
+            success: function (data) {//ajax请求成功后触发的方法
+               if(data.code=='1'){
+                   console.log(data.user);
+                   window.location.href="/page/menu.html";
+               }else{
+                   alert(data.message);
+               }
+            }
+        })
+    }
+</script>
+</body>
+</html>

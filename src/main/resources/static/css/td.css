@@ -1,0 +1,46 @@
+table {
+    table-layout: fixed;
+}
+td{
+    width:50px;
+    overflow:hidden;/*文本超出时隐藏*/
+    /*text-overflow: ellipsis; //超出部分用....代替*/
+    text-overflow: ellipsis;
+    white-space:nowrap;/*规定表格单元格中的内容不换行。*/
+
+}
+.ko{
+    font-size: 10px ;
+    text-shadow: 0 0 2px black ;
+    color: white ;
+}
+#close {
+    display: inline-block;
+    width: 30px;
+    height: 4px;
+    background: #333;
+    transform: rotate(45deg);
+}
+
+#close::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: #333;
+    transform: rotate(-90deg);
+}
+/*-webkit-scrollbar {*/
+    /*display: none;*/
+/*}*/
+
+/*table td:hover { !* 鼠标滑过  显示隐藏的内容  伴有横向的滚动条 *!*/
+    /*overflow:auto;*/
+    /*overflow:visible;*/
+    /*width:auto;*/
+    /*table-layout:auto;*/
+    /*z-index: 20;*/
+/*}*/
+/*table:hover{*/
+    /*table-layout:auto;*/
+/*}*/

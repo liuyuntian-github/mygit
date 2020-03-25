@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hwmenu.dao.WeekMenuDao">
+    <sql id="table_base_attribute_name">
+        week,
+        week_id,
+        (SELECT food_name from food_menu  where menu_id=meat)  as meat,
+        (SELECT food_name from food_menu  where menu_id=element)  as element,
+        (SELECT food_name from food_menu  where menu_id=soup)  as soup,
+        (SELECT food_name from food_menu  where menu_id=staple_food)  as staple_food,
+        meat as meatId,
+        element as elementId,
+        soup as soupId,
+        staple_food as stapleFoodId
+    </sql>
+    <sql id="class_attribute_name">
+        #{week},
+        #{weekId},
+        #{meat},
+        #{element},
+        #{soup},
+        #{stapleFood}
+    </sql>
+    <sql id="table_name">
+      week_menu
+    </sql>
+    <sql id="table_update_attribute">
+        <if test="meat  != null ">
+            meat=#{meat},
+        </if>
+        <if test="element != null">
+            element=#{element},
+        </if>
+        <if test="soup != null">
+            soup=#{soup},
+        </if>
+        <if test="stapleFood != null">
+            staple_food=#{stapleFood}
+        </if>
+
+    </sql>
+    <resultMap id="weekMenuMap" type="com.example.hwmenu.entity.WeekMenuEntity" >
+        <id column="WEEK_ID" property="weekId" />
+        <result column="week" property="week" jdbcType="VARCHAR" />
+        <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
+        <result column="meat" property="meat" jdbcType="VARCHAR" />
+        <result column="element" property="element" jdbcType="VARCHAR" />
+        <result column="soup" property="soup" jdbcType="VARCHAR" />
+        <result column="staple_food" property="stapleFood" jdbcType="VARCHAR" />
+        <result column="meatId" property="meatId" jdbcType="VARCHAR" />
+        <result column="elementId" property="elementId" jdbcType="VARCHAR" />
+        <result column="soupId" property="soupId" jdbcType="VARCHAR" />
+        <result column="stapleFoodId" property="stapleFoodId" jdbcType="VARCHAR" />
+        <result column="total" property="total" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--查询周菜单-->
+    <select id="selectByWeekMenu" resultMap="weekMenuMap">
+        select <include refid="table_base_attribute_name"/> ,sum(price) as total from
+        week_menu  left join food_menu   on  meat = menu_id
+        or  element = menu_id or  soup = menu_id or  staple_food = menu_id group by week_id;
+    </select>
+
+    <!--保存-->
+    <insert id="saveWeekMenu" parameterType="com.example.hwmenu.entity.WeekMenuEntity">
+        insert into <include refid="table_name"/> (<include refid="table_base_attribute_name"/>) values (<include refid="class_attribute_name"/>)
+    </insert>
+    <!--修改周菜单-->
+    <update id="updateWeekMenu" parameterType="com.example.hwmenu.entity.WeekMenuEntity">
+        update <include refid="table_name"/> set
+        <include refid="table_update_attribute"/>
+        <where>
+            week_id=#{weekId}
+        </where>
+    </update>
+</mapper>

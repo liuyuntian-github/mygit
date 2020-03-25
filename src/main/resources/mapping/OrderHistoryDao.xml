@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hwmenu.dao.OrderHistoryDao">
+    <sql id="table_base_attribute_name">
+        history_id,
+        week_id,
+        menu_array_id,
+        price_total,
+        create_date,
+        state
+    </sql>
+    <sql id="class_attribute_name">
+        #{historyId},
+        #{weekId},
+        #{menuArrayId},
+        #{priceTotal},
+        #{createDate},
+        #{state}
+    </sql>
+    <sql id="table_name">
+     order_history
+    </sql>
+    <resultMap id="historyMap" type="com.example.hwmenu.entity.OrderHistoryEntity" >
+        <id column="history_id" property="historyId" />
+        <result column="week_id" property="weekId" jdbcType="VARCHAR" />
+        <result column=" menu_array_id" property="menuArrayId" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="price_total" property="priceTotal" jdbcType="Double" />
+        <result column="state" property="state" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="table_query_attribute">
+
+    </sql>
+    <select id="getOrderHistory" parameterType="map" resultMap="historyMap">
+        select <include refid="table_base_attribute_name"/> from <include refid="table_nme"/>
+        order by create_date desc limit ${startRow},${size}
+    </select>
+    <insert id="saveOrderHistory" parameterType="com.example.hwmenu.entity.OrderHistoryEntity">
+        insert into <include refid="table_nme"/> (<include refid="table_base_attribute_name"/>)
+        value(<include refid="class_attribute_name"/>)
+    </insert>
+    <select id="getOrderHistoryTotal" parameterType="map" resultType="int">
+        select count(1) from <include refid="table_nme"/>
+    </select>
+</mapper>
